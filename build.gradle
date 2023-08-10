@@ -77,6 +77,9 @@ dependencies {
     implementation('org.springframework:spring-aop:5.3.20')
     implementation("org.aspectj:aspectjweaver:1.8.12")
 
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+
     //Lombok
     implementation("org.projectlombok:lombok:${lombokVersion}")
     testImplementation("org.projectlombok:lombok:${lombokVersion}")
