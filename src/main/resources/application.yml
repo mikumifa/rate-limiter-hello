@@ -1,0 +1,6 @@
+buckets:
+  config:
+    - name: A
+      capacity: 100
+      refillMinutes: 0
+      refillSeconds: 1
