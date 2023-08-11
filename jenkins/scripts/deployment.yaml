@@ -20,7 +20,7 @@ spec:
           ports:
             - containerPort: 8080
       imagePullSecrets:
-        - name: bmp1MjM6bmp1MjMyMDIz
+        - name: harborlogin
 
 ---
 apiVersion: v1
