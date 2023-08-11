@@ -8,7 +8,18 @@ pipeline {
             steps {
                 echo "1.Git Clone Code"
 
-                git url: "https://gitclone.com/github.com/mikumifa/rate-limiter-hello.git"
+            script {
+            def gitUrl = "https://gitclone.com/github.com/mikumifa/rate-limiter-hello.git"
+            def gitBranch = "main" // 使用main分支
+            
+            checkout([
+                $class: 'GitSCM',
+                branches: [[name: "refs/remotes/origin/${gitBranch}"]],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'CloneOption', noTags: true, reference: '', shallow: true]],
+                userRemoteConfigs: [[url: gitUrl]]
+            ])
+        }
             }
         }
         stage('Maven Build') {
