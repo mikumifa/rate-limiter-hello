@@ -85,7 +85,7 @@ node('slave') {
     
         stage('Deploy') {
         echo "7. Deploy To K8s Stage"
-        sh 'kubectl apply -f ./jenkins/scripts/deployment.yaml'
+        sh 'kubectl apply -f ./jenkins/scripts/deployment.yaml -n nju23'
         }
     }
 }
