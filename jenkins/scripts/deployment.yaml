@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-deployment
+  namespace: nju23
 spec:
   replicas: 3
   selector:
@@ -23,7 +24,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-service
+  name: hello-service\
+  namespace: nju23
 spec:
 
   selector:
