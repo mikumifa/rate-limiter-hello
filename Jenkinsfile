@@ -30,7 +30,7 @@ pipeline {
             steps {
             echo "3.Image Build Stage"
             sh 'docker build -f Dockerfile -t hello:${BUILD_ID} . '
-            sh 'docker tag  prometheus-test-demo:${BUILD_ID}  harbor.edu.cn/library/prometheus-test-demo:${BUILD_ID}'
+            sh 'docker tag  hello:${BUILD_ID}  harbor.edu.cn/nju23/hello:${BUILD_ID}'
             }
         }
         stage('Push') {
@@ -40,7 +40,7 @@ pipeline {
             steps {
             echo "4.Push Docker Image Stage"
             sh "docker login --username=nju23 harbor.edu.cn -p nju232023"
-            sh "docker push harbor.edu.cn/library/hello:${BUILD_ID}"
+            sh "docker push harbor.edu.cn/nju23/hello:${BUILD_ID}"
             }
         }
     }
@@ -58,12 +58,12 @@ node('slave') {
         
         stage('YAML') {
         echo "6. Change YAML File Stage"
-        sh 'sed -i "s#{VERSION}#${BUILD_ID}#g" ./jenkins/scripts/prometheus-test-demo.yaml'
+        sh 'sed -i "s#{VERSION}#${BUILD_ID}#g" ./jenkins/scripts/deployment.yaml'
         }
     
         stage('Deploy') {
         echo "7. Deploy To K8s Stage"
-        sh 'kubectl apply -f ./jenkins/scripts/prometheus-test-demo.yaml'
+        sh 'kubectl apply -f ./jenkins/scripts/deployment.yaml'
         }
     }
 }

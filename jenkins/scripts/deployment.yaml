@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello
-          image: hello:latest
+          image: harbor.edu.cn/nju23/hello:{VERSION}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
