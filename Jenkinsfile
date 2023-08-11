@@ -63,7 +63,18 @@ node('slave') {
         
         stage('Clone YAML') {
         echo "5. Git Clone YAML To Slave"
-        git url: "https://gitclone.com/github.com/mikumifa/rate-limiter-hello.git"
+        script {
+            def gitUrl = "https://gitclone.com/github.com/mikumifa/rate-limiter-hello.git"
+            def gitBranch = "main" // 使用main分支
+            
+            checkout([
+                $class: 'GitSCM',
+                branches: [[name: "refs/remotes/origin/${gitBranch}"]],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'CloneOption', noTags: true, reference: '', shallow: true]],
+                userRemoteConfigs: [[url: gitUrl]]
+            ])
+        }
 
         }
         
