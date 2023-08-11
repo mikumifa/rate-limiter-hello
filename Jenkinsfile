@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo "1.Git Clone Code"
 
-                git url: "https://kgithub.com/mikumifa/rate-limiter-hello.git"
+                git url: "https://gitclone.com/github.com/mikumifa/rate-limiter-hello.git"
             }
         }
         stage('Maven Build') {
@@ -52,7 +52,7 @@ node('slave') {
         
         stage('Clone YAML') {
         echo "5. Git Clone YAML To Slave"
-        git url: "https://kgithub.com/mikumifa/rate-limiter-hello.git"
+        git url: "https://gitclone.com/github.com/mikumifa/rate-limiter-hello.git"
 
         }
         
