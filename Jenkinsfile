@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Code') {
             agent {
-                label 'master'
+                label 'main'
             }
             steps {
                 echo "1.Git Clone Code"
@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Image Build') {
             agent {
-                label 'master'
+                label 'main'
             }
             steps {
             echo "3.Image Build Stage"
