@@ -19,6 +19,8 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+      imagePullSecrets:
+        - name: bmp1MjM6bmp1MjMyMDIz
 
 ---
 apiVersion: v1
