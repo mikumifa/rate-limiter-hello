@@ -53,7 +53,7 @@ metadata:
   labels:
     k8s-app: hello
   name: hello
-  namespace: monitoring
+  namespace: nju23
 spec:
   endpoints:
     - interval: 30s
