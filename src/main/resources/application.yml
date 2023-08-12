@@ -1,6 +1,22 @@
 server:
     port: 8080
+
 spring:
+    application:
+        name: hello
     datasource:
         url: jdbc:mysql://124.220.80.204:3306/Cloud?user=root&password=041015
+management:
+    endpoints:
+        web:
+            exposure:
+                include: 'prometheus'
+        health:
+            show-details: always
+    management:
+        server:
+            port: 8081
+    metrics:
+        tags:
+            application: ${spring.application.name}
 
