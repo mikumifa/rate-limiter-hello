@@ -50,7 +50,7 @@ spec:
       scheme: 'http'
   selector:
     matchLabels:
-      app: application
+      app: nju23
   namespaceSelector:
     matchNames:
       - nju23
