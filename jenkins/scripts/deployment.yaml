@@ -20,7 +20,7 @@ spec:
           ports:
             - containerPort: 8080
       imagePullSecrets:
-        - name: harborlogin
+        - name: regcred
 
 ---
 apiVersion: v1
