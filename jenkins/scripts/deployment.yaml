@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-deployment
+  name: hello
   namespace: nju23
 spec:
   replicas: 3
@@ -19,14 +19,12 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
-      imagePullSecrets:
-        - name: regcred
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-service
+  name: hello
   namespace: nju23
 spec:
 
