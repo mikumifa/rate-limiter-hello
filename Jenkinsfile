@@ -81,11 +81,14 @@ node('slave') {
         stage('YAML') {
         echo "6. Change YAML File Stage"
         sh 'sed -i "s#{VERSION}#${BUILD_ID}#g" ./jenkins/scripts/deployment.yaml'
+
         }
     
         stage('Deploy') {
         echo "7. Deploy To K8s Stage"
         sh 'kubectl apply -f ./jenkins/scripts/deployment.yaml -n nju23'
+        sh 'kubectl apply -f ./jenkins/scripts/monitor.yaml'
+
         }
     }
 }
