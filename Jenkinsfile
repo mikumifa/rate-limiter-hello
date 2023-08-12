@@ -34,6 +34,24 @@ pipeline {
                 sh 'mvn -B clean package -Dmaven.test.skip=true'
             }
         }
+
+        stage('Test'){
+            when{
+                anyOf{
+                    branch 'master'
+                }
+            }
+            steps{
+                echo '2.1.Start Test'
+                sh 'mvn test'
+            }
+            post {
+                  always {
+                        junit '**/target/*.xml'
+                  }
+            }
+        }
+
         stage('Image Build') {
             agent {
                 label 'master'
