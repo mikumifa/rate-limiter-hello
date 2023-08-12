@@ -36,10 +36,8 @@ pipeline {
         }
 
         stage('Test'){
-            when{
-                anyOf{
-                    branch 'master'
-                }
+            agent {
+                label 'master'
             }
             steps{
                 echo '2.1.Start Test'
