@@ -41,7 +41,7 @@ spec:
     app: hello
   ports:
     - name: tcp
-      nodePort: 40000
+      nodePort: 31047
       protocol: TCP
       port: 8080
       targetPort: 8080
