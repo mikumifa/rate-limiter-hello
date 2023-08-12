@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: hello
   name: hello
   namespace: nju23
 spec:
@@ -10,6 +12,11 @@ spec:
       app: hello
   template:
     metadata:
+      annotations:
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: http
+        prometheus.io/scrape: "true"
       labels:
         app: hello
     spec:
@@ -26,11 +33,36 @@ kind: Service
 metadata:
   name: hello
   namespace: nju23
+  labels:
+    app: hello
 spec:
 
   selector:
     app: hello
   ports:
-    - port: 9090
+    - name: tcp
+      nodePort: 31047
+      protocol: TCP
+      port: 8080
       targetPort: 8080
   type: NodePort
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: hello
+  name: hello
+  namespace: monitoring
+spec:
+  endpoints:
+    - interval: 30s
+      port: tcp
+      path: /actuator/prometheus
+      scheme: 'http'
+  selector:
+    matchLabels:
+      app: hello
+  namespaceSelector:
+    matchNames:
+      - nju23

@@ -15,7 +15,7 @@ management:
             show-details: always
     management:
         server:
-            port: 8081
+            port: 8080
     metrics:
         tags:
             application: ${spring.application.name}
