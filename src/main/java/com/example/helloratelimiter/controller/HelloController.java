@@ -2,6 +2,8 @@ package com.example.helloratelimiter.controller;
 
 import com.example.helloratelimiter.dao.HelloMapper;
 import com.example.helloratelimiter.service.HelloService;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import io.prometheus.client.Counter;
 import io.prometheus.client.Summary;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +35,7 @@ public class HelloController {
     private final HelloService helloService;
 
     private final HelloMapper helloMapper;
-
+    @Counted(description = "hello_requests_total")
     @GetMapping("/hello")
     public ResponseEntity<String> hello() {
         int i = helloMapper.token();

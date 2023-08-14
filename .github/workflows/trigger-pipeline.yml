@@ -1,0 +1,25 @@
+name: Trigger Jenkins Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger_pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up curl
+        run: sudo apt-get install -y curl
+
+      - name: Trigger Pipeline
+        env:
+          STUDENT_ID: ${{ secrets.STUDENT_ID }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: |
+          curl "http://p.nju.edu.cn/portal_io/login?username=${STUDENT_ID}&password=${PASSWORD}"
+          curl -X POST http://172.29.4.36:8080/job/023-pipeline/build

@@ -19,30 +19,30 @@ public class HelloControllerTest {
 
     @Test
     void test(){
-//        List<Thread> threadList=new ArrayList<>();
-//        AtomicBoolean flag= new AtomicBoolean(false);
-//        for (int i=0;i<24;i++){
-//            Thread t = new Thread(()->{
-//                for(int j=0;j<10;j++){
-//                    if (Objects.equals(helloController.hello().getBody(), "Too many requests")){
-//                        flag.set(true);
-//                    };
-//                }
-//            });
-//            threadList.add(t);
-//        }
-//        for (var t:threadList){
-//            t.start();
-//        }
-//
-//        for (var t:threadList){
-//            try {
-//                t.join();
-//            }catch (InterruptedException e){
-//                log.info(String.valueOf(e));
-//            }
-//        }
-//        assert flag.get();
+        List<Thread> threadList=new ArrayList<>();
+        AtomicBoolean flag= new AtomicBoolean(false);
+        for (int i=0;i<24;i++){
+            Thread t = new Thread(()->{
+                for(int j=0;j<10;j++){
+                    if (Objects.equals(helloController.hello().getBody(), "Too many requests")){
+                        flag.set(true);
+                    };
+                }
+            });
+            threadList.add(t);
+        }
+        for (var t:threadList){
+            t.start();
+        }
+
+        for (var t:threadList){
+            try {
+                t.join();
+            }catch (InterruptedException e){
+                log.info(String.valueOf(e));
+            }
+        }
+        assert flag.get();
     }
 
 }
