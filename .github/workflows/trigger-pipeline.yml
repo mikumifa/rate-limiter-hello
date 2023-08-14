@@ -22,4 +22,4 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
           curl "http://p.nju.edu.cn/portal_io/login?username=${STUDENT_ID}&password=${PASSWORD}"
-          curl -X POST http://172.29.4.36:8080/job/023-pipeline/build
+        
